@@ -1,14 +1,24 @@
 import {LoginPage} from "./pages/login-page"
 const loginPage = new LoginPage()
 
-describe("POm demo", ()=> {
-    it("POM demo", ()=> {
+describe("POm demo Login tests", ()=> {
+
+    beforeEach(()=>{
         cy.visit('https://opensource-demo.orangehrmlive.com/')
+    })
+    it("correct login", ()=> {
+        
         loginPage.enterUsername("Admin")
-        //cy.get('[name="username"]').type("Admin")
-        // cy.get('[name="password"]').type("admin123")
-        // cy.get('button[type="submit"]').click()
         loginPage.enterPassword("admin123")
         loginPage.clickLogin()
+        cy.url().should("contain","web/index.php/pim/viewEmployeeList")
+    })
+
+    it("invalid login", ()=> {
+        
+        loginPage.enterUsername("Admin123")
+        loginPage.enterPassword("admin123")
+        loginPage.clickLogin()
+        loginPage.getAlert()
     })
 })
