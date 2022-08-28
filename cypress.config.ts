@@ -1,8 +1,8 @@
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
-  watchForFileChanges: false,
-  defaultCommandTimeout: 7500,
+  watchForFileChanges: true,
+  defaultCommandTimeout: 4000,
   failOnStatusCode: false,
   e2e: {
     // We've imported your old cypress plugins here.
